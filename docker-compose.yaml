@@ -1,0 +1,15 @@
+version: "3"
+services:
+  general-py-api:
+    image: general-py-api:local
+    container_name: general-py-api
+    build:
+      context: .
+      dockerfile: genapi/build/Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - internal
+networks:
+  internal:
+    
