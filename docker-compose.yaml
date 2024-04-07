@@ -6,10 +6,28 @@ services:
     build:
       context: .
       dockerfile: genapi/build/Dockerfile
+    environment:
+      pg_user: admin
+      pg_pw: c2VjcmV0MTIzNA==
+      pg_db: general
     ports:
       - "8000:8000"
-    networks:
-      - internal
-networks:
-  internal:
+  general-postgres-db:
+    image: postgres:16.2
+    restart: always
+    shm_size: 128mb
+    container_name: general-postgres-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret1234
+      POSTGRES_DB: general
+    ports:
+      - "5432:5432"
+    volumes:
+      - $HOME/postgres:/var/lib/postgresql
+  db-admin:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
     
