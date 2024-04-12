@@ -1,5 +1,3 @@
-from doctest import Example
-from unicodedata import name
 from pydantic import BaseModel, Field
 
 class BasicPost(BaseModel):
